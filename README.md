@@ -1,1 +1,1 @@
-# springboot_app
+# springboot-app
