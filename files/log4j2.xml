@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+  <Appenders>
+     <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+    </Console>
+
+    <Rollbar name="ROLLBAR">
+      <configProviderClassName>com.example.demo.RollbarConfig</configProviderClassName>
+      <enabled>true</enabled>
+
+    </Rollbar>
+  </Appenders>
+
+  <Loggers>
+    <Root level="debug">
+      <AppenderRef ref="Console" />
+    </Root>
+    <Logger name="com.example" level="ERROR" additivity="false">
+      <AppenderRef ref="ROLLBAR"/>
+    </Logger>
+  </Loggers>
+</Configuration>

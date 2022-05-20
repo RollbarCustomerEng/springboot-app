@@ -1,0 +1,36 @@
+ plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+//
+// The exclude is important becausespring-boot-starter-logging includes a log4j2 log (SFLDJ ??) that conflict with 
+// org.springframework.boot:spring-boot-starter-log4j2 as the last implementation
+// Note this may also be needed for org.springframework.boot:spring-boot-starter-test if we are running tests
+//
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web'){
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation('com.rollbar:rollbar-java:1.+')
+	implementation ('com.rollbar:rollbar-spring-boot-webmvc:1.+')
+	implementation('com.rollbar:rollbar-log4j2:1.+')
+	implementation('org.springframework.boot:spring-boot-starter-log4j2')
+
+}
+
+
+test {
+	useJUnitPlatform()
+}
