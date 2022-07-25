@@ -43,8 +43,6 @@ public class RollbarConfig implements ConfigProvider {
     String environment = env.getProperty("x.environment");
     String codeVersion = env.getProperty("x.codeVersion");
 
-    System.out.println(accessToken);
-
     // Reference ConfigBuilder.java for all the properties you can set for Rollbar
     return RollbarSpringConfigBuilder.withAccessToken(accessToken)
         .environment(environment)
