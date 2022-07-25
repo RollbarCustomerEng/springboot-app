@@ -1,15 +1,17 @@
 package com.example.demo;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rollbar.notifier.Rollbar;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 @RestController
 public class HelloController {
@@ -36,5 +38,11 @@ public class HelloController {
 		rollbar.info("In /test");
 
 		throw new RuntimeException("An error has occurred");
+	}
+
+	@GetMapping("/greeting")
+	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+		model.addAttribute("name", name);
+		return "greeting";
 	}
 }

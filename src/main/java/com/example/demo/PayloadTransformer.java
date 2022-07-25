@@ -2,8 +2,6 @@ package com.example.demo;
 
 import java.util.Map;
 import com.rollbar.api.payload.data.Data;
-import com.rollbar.api.payload.data.body.Body;
-import com.rollbar.api.payload.data.body.Message;
 import com.rollbar.notifier.transformer.Transformer;
 
 import com.rollbar.api.payload.data.Request;
