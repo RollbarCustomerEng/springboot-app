@@ -4,13 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-    {
-        "type": "java",
-        "name": "Launch Java Program",
-        "request": "launch",
-        "env": {"access_token": "ACCESS_TOKEN", "environment": "qa", "code_version": "1.0.5"},
-        "mainClass": "com.example.demo.DemoApplication"
-    }
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch DemoApplication",
+            "request": "launch",
+            "mainClass": "com.example.demo.DemoApplication",
+            "env": {"access_token": "ACCESS_TOKEN", "environment": "qa", "code_version": "1.0.5"},
+            "projectName": "demo"
+        }
     ]
 }
