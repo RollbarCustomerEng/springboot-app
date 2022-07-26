@@ -31,13 +31,13 @@ public class Transaction {
 
 
     
-    public void completeTransaction() throws Exception{
+    public void executeTransaction() throws Exception{
 
         double taxes = this.calculateTaxes();
         double price = this.getPrice();
 
         if(taxes == 0.00) {
-            throw new Exception("Invalid tax percentage");
+            throw new Exception("Invalid tax rate for chosen item");
         }
 
         double total = price * (1 + taxes);

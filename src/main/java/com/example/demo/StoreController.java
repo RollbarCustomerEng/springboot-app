@@ -41,7 +41,7 @@ public class StoreController {
 	public void buy() throws Exception {
 
 		Transaction txn = new Transaction("L", "red");
-		txn.completeTransaction();
+		txn.executeTransaction();
 	}
 
 	@GetMapping("/greeting")
