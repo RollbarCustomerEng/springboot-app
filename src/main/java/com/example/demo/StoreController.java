@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-public class HelloController {
+public class StoreController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("com.example.demo");
 
@@ -28,16 +28,20 @@ public class HelloController {
 		return "Greetings from Spring Boot!";
 	}
 
-	@RequestMapping("/test")
-	public String test() {
+	@RequestMapping("/choose")
+	public String choose() {
+
+		this.chooseShirt("L", "blue");
+		
+		return "Your shirt has been chosen";
+	}
 
 
-		LOGGER.info("LOGGER INFO");
-		LOGGER.warn("LOGGER WARN");
-		LOGGER.error("LOGGER ERROR");
-		rollbar.info("In /test");
+	@RequestMapping("/buy")
+	public void buy() {
 
-		throw new RuntimeException("An error has occurred");
+		Transaction txn = new Transaction("L", "red");
+		txn.completeTransaction();
 	}
 
 	@GetMapping("/greeting")
@@ -45,4 +49,23 @@ public class HelloController {
 		model.addAttribute("name", name);
 		return "greeting";
 	}
+
+	private int chooseShirt(String size, String color) {
+
+		try{
+			this.checkShirtSizeAndColor(size, color);
+		}
+		catch(ShirtOptionsException ex){
+			LOGGER.error("Invalid shirt options", ex);
+		}
+		
+		return 1;
+	}
+
+	private void checkShirtSizeAndColor(String size, String color) throws ShirtOptionsException{
+
+		if(size.equals("L") && color.equals("blue")){
+			throw new ShirtOptionsException("Invalid color for shirt size");
+		}
+	}	
 }
