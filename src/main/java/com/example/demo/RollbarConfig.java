@@ -21,14 +21,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 })
 public class RollbarConfig implements ConfigProvider {
 
-  
   @Bean
   public Rollbar rollbar() {
 
-    ConfigBuilder cb = ConfigBuilder.withAccessToken("");
-    Rollbar rb = new Rollbar(provide(cb));
-    rb.info("RollbarConfig completing");
-    return rb;
+    ConfigBuilder configBuilder = ConfigBuilder.withAccessToken("");
+    Rollbar rollbar = new Rollbar(provide(configBuilder));
+    rollbar.info("RollbarConfig completing");
+
+    return rollbar;
   }
 
 
@@ -39,7 +39,6 @@ public class RollbarConfig implements ConfigProvider {
     String environment = System.getenv("environment");
     String codeVersion = System.getenv("code_version");
 
-    // Reference ConfigBuilder.java for all the properties you can set for Rollbar
     return RollbarSpringConfigBuilder.withAccessToken(accessToken)
         .enabled(true)
         .environment(environment)
@@ -49,5 +48,4 @@ public class RollbarConfig implements ConfigProvider {
         .transformer(new PayloadTransformer())
         .build();
   }
-
-  }
+}
