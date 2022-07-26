@@ -24,7 +24,6 @@ public class PayloadTransformer implements Transformer {
         headers.put("authorization", "*****");
         headers.put("host", "*****");
   
-  
         Request scrubbedRequest =  new Request.Builder(req)
                                               .headers(headers)
                                               .build();

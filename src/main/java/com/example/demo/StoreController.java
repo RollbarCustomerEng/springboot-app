@@ -38,7 +38,7 @@ public class StoreController {
 
 
 	@RequestMapping("/buy")
-	public void buy() {
+	public void buy() throws Exception {
 
 		Transaction txn = new Transaction("L", "red");
 		txn.completeTransaction();

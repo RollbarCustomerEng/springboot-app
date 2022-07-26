@@ -31,13 +31,16 @@ public class Transaction {
 
 
     
-    public void completeTransaction(){
+    public void completeTransaction() throws Exception{
 
         double taxes = this.calculateTaxes();
         double price = this.getPrice();
 
-        double total = price/taxes;
+        if(taxes == 0.00) {
+            throw new Exception("Invalid tax percentage");
+        }
 
+        double total = price * (1 + taxes);
         this.swipeCard(total);
 
         return;
